@@ -3,6 +3,7 @@
     "read": "doc._openid == auth.openid",
     "write": "doc._openid == auth.openid",
     "create": true,
+
     "delete": "doc._openid == auth.openid"
   },
   "studyRecords": {
