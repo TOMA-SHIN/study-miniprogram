@@ -1,0 +1,26 @@
+{
+  "studyPlans": {
+    "read": "doc._openid == auth.openid",
+    "write": "doc._openid == auth.openid",
+    "create": true,
+    "delete": "doc._openid == auth.openid"
+  },
+  "studyRecords": {
+    "read": "doc._openid == auth.openid",
+    "write": "doc._openid == auth.openid",
+    "create": true,
+    "delete": "doc._openid == auth.openid"
+  },
+  "userStats": {
+    "read": "doc._openid == auth.openid",
+    "write": "doc._openid == auth.openid",
+    "create": true,
+    "delete": "doc._openid == auth.openid"
+  },
+  "subjects": {
+    "read": true,
+    "write": false,
+    "create": false,
+    "delete": false
+  }
+}

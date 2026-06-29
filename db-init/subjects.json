@@ -1,0 +1,13 @@
+{"name":"语文","icon":"book","sortOrder":1}
+{"name":"数学","icon":"calculate","sortOrder":2}
+{"name":"英语","icon":"language","sortOrder":3}
+{"name":"物理","icon":"atom","sortOrder":4}
+{"name":"化学","icon":"flask","sortOrder":5}
+{"name":"生物","icon":"leaf","sortOrder":6}
+{"name":"历史","icon":"clock","sortOrder":7}
+{"name":"地理","icon":"map","sortOrder":8}
+{"name":"政治","icon":"balance","sortOrder":9}
+{"name":"编程","icon":"code","sortOrder":10}
+{"name":"考研","icon":"graduation","sortOrder":11}
+{"name":"考证","icon":"certificate","sortOrder":12}
+{"name":"其他","icon":"more","sortOrder":99}
