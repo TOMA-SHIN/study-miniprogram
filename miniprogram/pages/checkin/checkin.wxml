@@ -1,0 +1,52 @@
+<view class="container {{isDarkMode ? 'dark-mode' : ''}}">
+  <view class="form-card">
+    <view class="form-item">
+      <text class="form-label">选择计划</text>
+      <block wx:if="{{plans.length > 0}}">
+        <picker mode="selector" range="{{plans}}" range-key="name" value="{{planIndex}}" bindchange="onPlanChange">
+          <view class="picker {{planIndex > -1 ? 'active' : ''}}">
+            {{planIndex > -1 ? plans[planIndex].name : '请选择计划'}}
+          </view>
+        </picker>
+      </block>
+      <block wx:else>
+        <view class="empty-plan" bindtap="goAddPlan">
+          暂无有效计划，点击创建
+        </view>
+      </block>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">打卡日期</text>
+      <picker mode="date" value="{{date}}" bindchange="onDateChange">
+        <view class="picker active">{{date}}</view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">学习时长（分钟）</text>
+      <slider min="5" max="180" step="5" value="{{minutes}}" show-value bindchange="onMinutesChange" />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">学习笔记</text>
+      <textarea class="form-textarea" placeholder="记录今天的学习内容..." value="{{note}}" bindinput="onNoteInput" />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">上传图片</text>
+      <view class="image-section">
+        <view wx:if="{{!imageTempUrl && !uploadingImage}}" class="upload-btn" bindtap="chooseImage">+</view>
+        <view wx:if="{{uploadingImage}}" class="upload-loading">上传中...</view>
+        <view wx:if="{{imageTempUrl}}" class="image-preview-wrap">
+          <image class="image-preview" src="{{imageTempUrl}}" mode="aspectFill" />
+          <view class="remove-image" bindtap="removeImage">×</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="submit-btn {{loading ? 'disabled' : ''}}" bindtap="submitCheckIn">
+    {{loading ? '提交中...' : '立即打卡'}}
+  </view>
+</view>

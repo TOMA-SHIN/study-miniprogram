@@ -1,0 +1,56 @@
+<view class="container {{isDarkMode ? 'dark-mode' : ''}}">
+  <view class="user-header">
+    <view class="user-avatar-wrap">
+      <image wx:if="{{userInfo.avatarUrl}}" class="user-avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill" />
+      <view wx:else class="user-avatar avatar-placeholder">学</view>
+    </view>
+    <view class="user-info">
+      <text class="user-nick">{{userInfo.nickName || '学习打卡'}}</text>
+      <text class="user-desc">坚持学习，成就更好的自己</text>
+    </view>
+  </view>
+
+  <view class="stats-card">
+    <view class="stats-main">
+      <text class="stats-number">{{todayMinutes}}</text>
+      <text class="stats-unit">分钟</text>
+    </view>
+    <view class="stats-side">
+      <text class="streak-text">连续打卡 {{streak}} 天</text>
+    </view>
+  </view>
+
+  <view class="action-cards">
+    <view class="action-card checkin-card" bindtap="goCheckIn">
+      <text class="action-icon">+</text>
+      <text class="action-title">今日打卡</text>
+      <text class="action-desc">记录今日学习</text>
+    </view>
+    <view class="action-card stats-card-btn" bindtap="goStats">
+      <text class="action-icon">📊</text>
+      <text class="action-title">学习统计</text>
+      <text class="action-desc">查看学习数据</text>
+    </view>
+  </view>
+
+  <view class="section-title">今日打卡记录</view>
+
+  <view wx:if="{{records.length === 0}}" class="empty-tip">
+    今天还没有打卡哦，点击上方按钮开始学习吧
+  </view>
+
+  <view wx:for="{{records}}" wx:key="_id" class="record-item">
+    <view class="record-dot" style="background-color: {{item.planColor || '#4CAF50'}};"></view>
+    <view class="record-info">
+      <view class="record-header">
+        <text class="record-name">{{item.planName || '未命名计划'}}</text>
+        <text class="record-minutes">{{item.minutes}} 分钟</text>
+      </view>
+      <text wx:if="{{item.note}}" class="record-note">{{item.note}}</text>
+    </view>
+  </view>
+
+  <view class="footer-link" bindtap="goRecords">
+    <text>查看全部记录 ></text>
+  </view>
+</view>

@@ -1,0 +1,145 @@
+.container {
+  padding: 24rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.form-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.form-item {
+  margin-bottom: 24rpx;
+}
+
+.form-item:last-child {
+  margin-bottom: 0;
+}
+
+.form-label {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 12rpx;
+}
+
+.picker {
+  height: 72rpx;
+  line-height: 72rpx;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 8rpx;
+  padding: 0 16rpx;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.picker.active {
+  color: #333;
+  border-color: #4CAF50;
+}
+
+.form-textarea {
+  width: 100%;
+  min-height: 160rpx;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 8rpx;
+  padding: 16rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+.empty-plan {
+  height: 72rpx;
+  line-height: 72rpx;
+  color: #999;
+  font-size: 28rpx;
+  text-align: center;
+  border: 1rpx dashed #ccc;
+  border-radius: 8rpx;
+}
+
+.submit-btn {
+  background-color: #4CAF50;
+  color: #fff;
+  text-align: center;
+  padding: 24rpx 0;
+  border-radius: 12rpx;
+  font-size: 32rpx;
+}
+
+.submit-btn.disabled {
+  opacity: 0.6;
+}
+
+.image-section {
+  display: flex;
+  align-items: center;
+}
+
+.upload-btn {
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  border: 1rpx dashed #ccc;
+  border-radius: 8rpx;
+  font-size: 48rpx;
+  color: #999;
+}
+
+.upload-loading {
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  color: #999;
+  font-size: 24rpx;
+}
+
+.image-preview-wrap {
+  position: relative;
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.image-preview {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+}
+
+.remove-image {
+  position: absolute;
+  top: -12rpx;
+  right: -12rpx;
+  width: 36rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  text-align: center;
+  background-color: #F44336;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 24rpx;
+}
+
+.dark-mode {
+  background-color: #1a1a1a;
+}
+
+.dark-mode .form-card {
+  background-color: #2c2c2c;
+}
+
+.dark-mode .form-label {
+  color: #eee;
+}
+
+.dark-mode .picker,
+.dark-mode .form-textarea {
+  background-color: #333;
+  border-color: #444;
+  color: #eee;
+}
