@@ -1,0 +1,30 @@
+# Node modules
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# WeChat DevTools
+miniprogram/project.private.config.json
+miniprogram/.eslintrc.js
+
+# Environment
+.env
+.env.*
+*.env
+
+# Logs
+*.log
+logs/
+
+# Build output
+dist/
+build/
+
+# OS
+Thumbs.db
