@@ -1,52 +1,49 @@
 <view class="container {{isDarkMode ? 'dark-mode' : ''}}">
-  <view class="form-card">
-    <view class="form-item">
-      <text class="form-label">选择计划</text>
-      <block wx:if="{{plans.length > 0}}">
-        <picker mode="selector" range="{{plans}}" range-key="name" value="{{planIndex}}" bindchange="onPlanChange">
-          <view class="picker {{planIndex > -1 ? 'active' : ''}}">
-            {{planIndex > -1 ? plans[planIndex].name : '请选择计划'}}
-          </view>
-        </picker>
-      </block>
-      <block wx:else>
-        <view class="empty-plan" bindtap="goAddPlan">
-          暂无有效计划，点击创建
-        </view>
-      </block>
+  <view class="form-item">
+    <text class="label">选择计划</text>
+    <picker mode="selector" range="{{planNames}}" bindchange="onPlanChange" wx:if="{{planNames.length > 0}}">
+      <view class="picker {{planIndex >= 0 ? 'selected' : ''}}">
+        {{planIndex >= 0 ? planNames[planIndex] : '请选择学习计划'}}
+      </view>
+    </picker>
+    <view class="empty-tip" bindtap="goCreatePlan" wx:if="{{planNames.length === 0}}">
+      <text>暂无学习计划，点击前往创建</text>
+      <text class="arrow">></text>
     </view>
+  </view>
 
-    <view class="form-item">
-      <text class="form-label">打卡日期</text>
-      <picker mode="date" value="{{date}}" bindchange="onDateChange">
-        <view class="picker active">{{date}}</view>
-      </picker>
+  <view class="tip" wx:if="{{todayMinutes > 0}}">
+    该计划今日已学 {{todayMinutes}} 分钟
+  </view>
+
+  <view class="form-item">
+    <text class="label">学习时长</text>
+    <view class="input-wrap">
+      <input type="digit" placeholder="输入学习时长" value="{{minutes}}" bindinput="onMinutesInput" />
+      <text class="unit">分钟</text>
     </view>
+  </view>
 
-    <view class="form-item">
-      <text class="form-label">学习时长（分钟）</text>
-      <slider min="5" max="180" step="5" value="{{minutes}}" show-value bindchange="onMinutesChange" />
-    </view>
+  <view class="form-item">
+    <text class="label">学习笔记</text>
+    <textarea placeholder="记录今天的学习内容..." value="{{note}}" bindinput="onNoteInput" />
+  </view>
 
-    <view class="form-item">
-      <text class="form-label">学习笔记</text>
-      <textarea class="form-textarea" placeholder="记录今天的学习内容..." value="{{note}}" bindinput="onNoteInput" />
-    </view>
-
-    <view class="form-item">
-      <text class="form-label">上传图片</text>
-      <view class="image-section">
-        <view wx:if="{{!imageTempUrl && !uploadingImage}}" class="upload-btn" bindtap="chooseImage">+</view>
-        <view wx:if="{{uploadingImage}}" class="upload-loading">上传中...</view>
-        <view wx:if="{{imageTempUrl}}" class="image-preview-wrap">
-          <image class="image-preview" src="{{imageTempUrl}}" mode="aspectFill" />
-          <view class="remove-image" bindtap="removeImage">×</view>
-        </view>
+  <view class="form-item">
+    <text class="label">学习图片（可选）</text>
+    <view class="image-upload-area">
+      <view wx:if="{{!imageFileID && !imageTempUrl}}" class="upload-btn" bindtap="chooseImage">
+        <text class="upload-icon">+</text>
+        <text class="upload-text">{{uploadingImage ? '上传中...' : '上传图片'}}</text>
+      </view>
+      <view wx:else class="image-preview-wrapper">
+        <image class="image-preview" src="{{imageTempUrl || ''}}" mode="aspectFill" />
+        <view class="remove-image-btn" bindtap="removeImage">×</view>
       </view>
     </view>
   </view>
 
-  <view class="submit-btn {{loading ? 'disabled' : ''}}" bindtap="submitCheckIn">
-    {{loading ? '提交中...' : '立即打卡'}}
+  <view class="footer">
+    <button class="btn-submit" bindtap="submitCheckIn" loading="{{loading}}">确认打卡</button>
   </view>
 </view>

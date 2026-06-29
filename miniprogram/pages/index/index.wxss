@@ -210,6 +210,7 @@
   padding: 24rpx;
 }
 
+/* 深色模式 */
 .dark-mode {
   background-color: #1a1a1a;
 }

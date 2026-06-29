@@ -1,24 +1,26 @@
 const studyService = require('../../utils/studyService');
-const { getTodayStr } = require('../../utils/util');
 
 Page({
   data: {
     plans: [],
+    planNames: [],
     planIndex: -1,
-    date: getTodayStr(),
-    minutes: 30,
+    minutes: '',
     note: '',
+    todayMinutes: 0,
     loading: false,
-    subjects: [],
     imageFileID: '',
     imageTempUrl: '',
     uploadingImage: false,
     isDarkMode: false,
   },
 
+  onLoad() {
+    this.loadPlans();
+  },
+
   onShow() {
     this.loadPlans();
-    this.loadSubjects();
     const app = getApp();
     this.setData({ isDarkMode: app.globalData.isDarkMode });
   },
@@ -26,30 +28,40 @@ Page({
   async loadPlans() {
     try {
       const plans = await studyService.getPlans(true);
-      this.setData({ plans });
-    } catch (error) {
-      wx.showToast({ title: error.message || '加载计划失败', icon: 'none' });
+      console.log('[checkin] getPlans raw:', JSON.stringify(plans));
+      const activePlans = plans.filter(p => p.isActive !== false);
+      const planNames = activePlans.map(p => p.name || '未命名');
+      this.setData({ plans: activePlans, planNames });
+      if (activePlans.length === 0) {
+        console.warn('[checkin] 没有激活的学习计划');
+      }
+    } catch (err) {
+      console.error('[checkin] 加载计划失败:', err);
+      wx.showToast({ title: '加载计划失败', icon: 'none' });
     }
   },
 
-  async loadSubjects() {
+  goCreatePlan() {
+    wx.switchTab({ url: '/pages/plans/index' });
+  },
+
+  async onPlanChange(e) {
+    const planIndex = Number(e.detail.value);
+    this.setData({ planIndex, todayMinutes: 0 });
+    const plan = this.data.plans[planIndex];
+    if (!plan) return;
     try {
-      const subjects = await studyService.getSubjects();
-      this.setData({ subjects });
-    } catch (error) {
-      wx.showToast({ title: error.message || '加载科目失败', icon: 'none' });
+      const records = await studyService.getTodayRecords();
+      const mins = records
+        .filter(r => r.planId === plan._id)
+        .reduce((sum, r) => sum + (Number(r.minutes) || 0), 0);
+      this.setData({ todayMinutes: mins });
+    } catch (err) {
+      wx.showToast({ title: '查询时长失败', icon: 'none' });
     }
   },
 
-  onPlanChange(e) {
-    this.setData({ planIndex: e.detail.value });
-  },
-
-  onDateChange(e) {
-    this.setData({ date: e.detail.value });
-  },
-
-  onMinutesChange(e) {
+  onMinutesInput(e) {
     this.setData({ minutes: e.detail.value });
   },
 
@@ -63,6 +75,7 @@ Page({
       const tempFilePath = res.tempFiles[0].tempFilePath;
       this.setData({ imageTempUrl: tempFilePath, uploadingImage: true });
 
+      // Upload to cloud storage
       const cloudPath = `records/${Date.now()}_${Math.random().toString(36).slice(2)}.jpg`;
       const uploadRes = await wx.cloud.uploadFile({
         cloudPath,
@@ -81,32 +94,36 @@ Page({
     this.setData({ imageFileID: '', imageTempUrl: '' });
   },
 
-  goAddPlan() {
-    wx.navigateTo({ url: '/pages/planForm/planForm' });
-  },
-
   async submitCheckIn() {
-    const { plans, planIndex, date, minutes, note, imageFileID } = this.data;
-    if (planIndex < 0 || plans.length === 0) {
-      wx.showToast({ title: '请先选择一个计划', icon: 'none' });
+    const { plans, planIndex, minutes, note, imageFileID } = this.data;
+    if (planIndex < 0) {
+      wx.showToast({ title: '请选择学习计划', icon: 'none' });
       return;
     }
-    if (!minutes || minutes <= 0) {
-      wx.showToast({ title: '请输入有效时长', icon: 'none' });
+    const m = Number(minutes);
+    if (!m || m <= 0 || m > 1440) {
+      wx.showToast({ title: '时长应为1-1440分钟', icon: 'none' });
       return;
     }
     const plan = plans[planIndex];
+    const date = this.getTodayStr();
     this.setData({ loading: true });
     try {
-      await studyService.checkIn(plan._id, date, Number(minutes), note, imageFileID);
+      await studyService.checkIn(plan._id, date, m, note, imageFileID);
       wx.showToast({ title: '打卡成功', icon: 'success' });
-      setTimeout(() => {
-        wx.switchTab({ url: '/pages/index/index' });
-      }, 1000);
-    } catch (error) {
-      wx.showToast({ title: error.message || '打卡失败', icon: 'none' });
+      setTimeout(() => wx.switchTab({ url: '/pages/index/index' }), 1200);
+    } catch (err) {
+      wx.showToast({ title: '打卡失败', icon: 'none' });
     } finally {
       this.setData({ loading: false });
     }
+  },
+
+  getTodayStr() {
+    const d = new Date();
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   },
 });

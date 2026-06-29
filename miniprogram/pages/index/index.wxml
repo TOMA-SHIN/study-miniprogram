@@ -53,4 +53,6 @@
   <view class="footer-link" bindtap="goRecords">
     <text>查看全部记录 ></text>
   </view>
+
+
 </view>
