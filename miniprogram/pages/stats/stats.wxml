@@ -1,0 +1,64 @@
+<view class="container {{isDarkMode ? 'dark-mode' : ''}}">
+  <view class="tab-bar">
+    <view
+      wx:for="{{periods}}"
+      wx:key="key"
+      class="tab-item {{period === item.key ? 'tab-active' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="switchPeriod"
+    >
+      {{item.label}}
+    </view>
+  </view>
+
+  <view wx:if="{{!stats}}" class="empty-tip">暂无数据，快去打卡吧</view>
+
+  <block wx:if="{{stats}}">
+    <view class="stats-row">
+      <view class="stats-card">
+        <text class="stats-value">{{stats.totalMinutes}}</text>
+        <text class="stats-label">总时长(分钟)</text>
+      </view>
+      <view class="stats-card">
+        <text class="stats-value">{{stats.checkInCount}}</text>
+        <text class="stats-label">打卡次数</text>
+      </view>
+      <view class="stats-card">
+        <text class="stats-value">{{stats.avgMinutes}}</text>
+        <text class="stats-label">平均时长</text>
+      </view>
+    </view>
+
+    <view class="streak-card">
+      <view class="streak-item">
+        <text class="streak-value">{{stats.streak}}</text>
+        <text class="streak-label">当前连续打卡</text>
+      </view>
+      <view class="streak-divider"></view>
+      <view class="streak-item">
+        <text class="streak-value">{{stats.longestStreak}}</text>
+        <text class="streak-label">历史最高</text>
+      </view>
+    </view>
+
+    <view class="section-title">科目分布</view>
+    <view wx:if="{{!stats.subjectDistribution || stats.subjectDistribution.length === 0}}" class="empty-small">暂无科目数据</view>
+    <view wx:for="{{stats.subjectDistribution}}" wx:key="subject" class="bar-row">
+      <text class="bar-label">{{item.subject}}</text>
+      <view class="bar-track">
+        <view class="bar-fill bar-color-{{index % 5}}" style="width: {{item.percentage}}%;"></view>
+      </view>
+      <text class="bar-value">{{item.minutes}}分钟 ({{item.percentage}}%)</text>
+    </view>
+
+    <view class="section-title">最近打卡记录</view>
+    <view wx:if="{{!recentRecords || recentRecords.length === 0}}" class="empty-small">暂无记录</view>
+    <view wx:for="{{recentRecords}}" wx:key="_id" class="record-item">
+      <view class="record-main">
+        <text class="record-date">{{item.date}}</text>
+        <text class="record-minutes">{{item.minutes}} 分钟</text>
+      </view>
+      <text wx:if="{{item.note}}" class="record-note">{{item.note}}</text>
+    </view>
+  </block>
+</view>
