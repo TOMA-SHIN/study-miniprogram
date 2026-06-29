@@ -181,8 +181,7 @@ Page({
       date: '',
       subjectIndex: -1,
       planIndex: -1,
-      keyword: '',
-      isFiltering: false,
+      keyword: '',      isFiltering: false,
     });
     this.loadRecords(true);
   },
