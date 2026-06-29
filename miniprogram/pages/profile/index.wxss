@@ -215,8 +215,7 @@
 .settings-section {
   background-color: #fff;
   border-radius: 16rpx;
-  overflow: hidden;
-}
+  overflow: hidden;}
 
 .settings-title {
   font-size: 28rpx;
