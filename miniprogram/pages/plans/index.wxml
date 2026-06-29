@@ -1,0 +1,39 @@
+<view class="container {{isDarkMode ? 'dark-mode' : ''}}">
+  <view class="add-btn" bindtap="goAdd">
+    <text class="add-icon">+</text>
+    <text>新建计划</text>
+  </view>
+
+  <view wx:if="{{plans.length === 0 && !loading}}" class="empty-state">
+    <text>暂无学习计划，点击上方按钮添加</text>
+  </view>
+
+  <view class="plan-list">
+    <view class="plan-card" wx:for="{{plans}}" wx:key="_id">
+      <view class="card-main" bindtap="goEdit" data-id="{{item._id}}">
+        <view class="card-header">
+          <view class="color-dot" style="background-color: {{item.color}};"></view>
+          <text class="plan-name">{{item.name}}</text>
+          <view class="status-tag status-{{item.status}}">{{item.statusText}}</view>
+        </view>
+        <view class="card-body">
+          <view class="info-row">
+            <text class="label">科目：</text>
+            <text class="tag subject-tag">{{item.subject}}</text>
+          </view>
+          <view class="info-row">
+            <text class="label">目标：</text>
+            <text>每日 {{item.targetMinutes}} 分钟</text>
+          </view>
+          <view class="info-row">
+            <text class="label">周期：</text>
+            <text>{{item.startDate}} 至 {{item.endDate || '未设置'}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="card-footer" bindtap="doDelete" data-id="{{item._id}}">
+        <text class="delete-btn">删除</text>
+      </view>
+    </view>
+  </view>
+</view>
