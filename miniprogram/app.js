@@ -27,9 +27,11 @@ App({
 
   async initUserInfo() {
     try {
+      // 1. wx.login 确保会话有效
       await new Promise((resolve, reject) => {
         wx.login({ success: resolve, fail: reject });
       });
+      // 2. 从云端获取用户资料（含 openid）
       const profile = await studyService.getUserProfile();
       const { nickName, avatarUrl, openid } = profile;
       this.globalData.userInfo = {
