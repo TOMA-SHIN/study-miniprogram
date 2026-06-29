@@ -1,0 +1,237 @@
+.container {
+  padding: 24rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* 深色模式 */
+.dark-mode {
+  background-color: #1a1a1a;
+}
+
+.dark-mode .profile-header,
+.dark-mode .stats-section,
+.dark-mode .menu-section,
+.dark-mode .settings-section {
+  background-color: #2c2c2c;
+}
+
+.dark-mode .nick-name,
+.dark-mode .menu-text,
+.dark-mode .stats-num {
+  color: #eee;
+}
+
+.dark-mode .stats-label,
+.dark-mode .login-tip,
+.dark-mode .settings-title,
+.dark-mode .menu-arrow {
+  color: #aaa;
+}
+
+.dark-mode .menu-item {
+  border-bottom-color: #3a3a3a;
+}
+
+/* 登录头部 */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 48rpx 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.login-header {
+  padding: 80rpx 24rpx;
+}
+
+.avatar-wrap {
+  margin-bottom: 20rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.avatar.large {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.avatar-placeholder {
+  background-color: #4CAF50;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  font-weight: bold;
+}
+
+.nick-name {
+  font-size: 36rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.login-tip {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 32rpx;
+}
+
+.login-btn {
+  background-color: #4CAF50;
+  color: #fff;
+  border-radius: 48rpx;
+  padding: 16rpx 64rpx;
+  font-size: 30rpx;
+  line-height: 1.5;
+  border: none;
+}
+
+.login-btn::after {
+  border: none;
+}
+
+.avatar-wrapper {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  line-height: normal;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar-wrapper::after {
+  border: none;
+}
+
+.nickname-input {
+  margin-top: 24rpx;
+  width: 400rpx;
+  height: 72rpx;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 36rpx;
+  padding: 0 32rpx;
+  font-size: 28rpx;
+  text-align: center;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.save-btn {
+  margin-top: 32rpx;
+  width: 400rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #4CAF50;
+  color: #fff;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  border: none;
+}
+
+.save-btn::after {
+  border: none;
+}
+
+.dark-mode .nickname-input {
+  background-color: #333;
+  border-color: #444;
+  color: #eee;
+}
+
+/* 统计 */
+.stats-section {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 32rpx 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.stats-item {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24rpx 0;
+}
+
+.stats-num {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #4CAF50;
+  margin-bottom: 8rpx;
+}
+
+.stats-label {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 菜单 */
+.menu-section {
+  background-color: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  margin-bottom: 24rpx;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32rpx 24rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-text {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.menu-arrow {
+  font-size: 28rpx;
+  color: #999;
+}
+
+/* 设置 */
+.settings-section {
+  background-color: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.settings-title {
+  font-size: 28rpx;
+  color: #999;
+  padding: 24rpx 24rpx 12rpx;
+}
+
+.logout-item {
+  justify-content: center;
+}
+
+.logout-text {
+  color: #F44336;
+}
+
+.dark-mode .logout-text {
+  color: #ef5350;
+}

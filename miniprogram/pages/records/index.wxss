@@ -1,0 +1,285 @@
+.container {
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.stats-card {
+  display: flex;
+  flex-direction: row;
+  background-color: #4CAF50;
+  color: #fff;
+  border-radius: 16rpx;
+  padding: 32rpx 0;
+  margin-bottom: 20rpx;
+}
+
+.stats-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 33.33%;
+}
+
+.stats-num {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+
+.stats-label {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+.filter-bar {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.filter-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.filter-row:last-child {
+  margin-bottom: 0;
+}
+
+.filter-picker {
+  flex: 1;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 8rpx;
+  padding: 12rpx 8rpx;
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.filter-picker.active {
+  border-color: #4CAF50;
+  color: #4CAF50;
+}
+
+.filter-input {
+  flex: 1;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 8rpx;
+  padding: 12rpx 16rpx;
+  font-size: 26rpx;
+  color: #333;
+}
+
+.filter-btn {
+  padding: 12rpx 24rpx;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 8rpx;
+  font-size: 26rpx;
+  color: #666;
+  background-color: #f5f5f5;
+}
+
+.filter-btn.primary {
+  background-color: #4CAF50;
+  color: #fff;
+  border-color: #4CAF50;
+}
+
+.record-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.record-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
+}
+
+.card-content {
+  padding: 24rpx;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.record-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  margin-right: 12rpx;
+  flex-shrink: 0;
+}
+
+.plan-name {
+  flex: 1;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.subject-tag {
+  font-size: 22rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 20rpx;
+  background-color: #E8F5E9;
+  color: #4CAF50;
+  flex-shrink: 0;
+  margin-left: 12rpx;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.label {
+  color: #999;
+  margin-right: 8rpx;
+}
+
+.minutes-text {
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+.remain-text {
+  font-weight: bold;
+  color: #FF9800;
+}
+
+.note-row {
+  margin-top: 4rpx;
+}
+
+.note-text {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+.image-row {
+  margin-top: 12rpx;
+}
+
+.record-thumb {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 8rpx;
+  background-color: #f0f0f0;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 24rpx;
+  border-top: 1rpx solid #f0f0f0;
+  padding: 16rpx 24rpx;
+}
+
+.edit-btn {
+  font-size: 26rpx;
+  color: #4CAF50;
+}
+
+.delete-btn {
+  font-size: 26rpx;
+  color: #F44336;
+}
+
+.empty-state {
+  text-align: center;
+  color: #999;
+  padding: 80rpx 0;
+  font-size: 28rpx;
+}
+
+.loading-state {
+  text-align: center;
+  color: #999;
+  padding: 24rpx 0;
+  font-size: 26rpx;
+}
+
+.no-more-state {
+  text-align: center;
+  color: #bbb;
+  padding: 24rpx 0;
+  font-size: 24rpx;
+}
+
+/* 深色模式 */
+.dark-mode {
+  background-color: #1a1a1a;
+}
+
+.dark-mode .filter-bar,
+.dark-mode .record-card,
+.dark-mode .empty-state,
+.dark-mode .loading-state,
+.dark-mode .no-more-state {
+  background-color: #2c2c2c;
+}
+
+.dark-mode .plan-name,
+.dark-mode .info-row {
+  color: #eee;
+}
+
+.dark-mode .label,
+.dark-mode .note-text,
+.dark-mode .empty-state,
+.dark-mode .loading-state,
+.dark-mode .no-more-state {
+  color: #aaa;
+}
+
+.dark-mode .filter-picker,
+.dark-mode .filter-input,
+.dark-mode .filter-btn {
+  border-color: #444;
+  background-color: #333;
+  color: #eee;
+}
+
+.dark-mode .card-footer {
+  border-top-color: #3a3a3a;
+}
+
+.dark-mode .subject-tag {
+  background-color: #1b3a1c;
+  color: #81c784;
+}
+
+.dark-mode .remain-text {
+  color: #ffb74d;
+}

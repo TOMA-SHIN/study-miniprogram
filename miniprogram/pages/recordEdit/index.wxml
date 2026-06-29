@@ -1,0 +1,36 @@
+<view class="container {{isDarkMode ? 'dark-mode' : ''}}">
+  <view class="plan-header">计划: {{planName}}</view>
+
+  <view class="form-item">
+    <view class="label">日期</view>
+    <picker mode="date" value="{{date}}" bindchange="onDateChange">
+      <view class="picker">{{date}}</view>
+    </picker>
+  </view>
+
+  <view class="form-item">
+    <view class="label">学习时长（分钟）</view>
+    <input type="number" value="{{minutes}}" bindinput="onMinutesInput" placeholder="请输入学习时长" />
+  </view>
+
+  <view class="form-item">
+    <view class="label">学习笔记</view>
+    <textarea value="{{note}}" bindinput="onNoteInput" placeholder="记录学习内容..." />
+  </view>
+
+  <view class="form-item">
+    <view class="label">学习图片</view>
+    <view class="image-upload-area">
+      <view wx:if="{{!imageFileID && !imageTempUrl}}" class="upload-btn" bindtap="chooseImage">
+        <text class="upload-icon">+</text>
+        <text class="upload-text">{{uploadingImage ? '上传中...' : '上传图片'}}</text>
+      </view>
+      <view wx:else class="image-preview-wrapper">
+        <image class="image-preview" src="{{imageTempUrl || ''}}" mode="aspectFill" />
+        <view class="remove-image-btn" bindtap="removeImage">×</view>
+      </view>
+    </view>
+  </view>
+
+  <button class="submit-btn" bindtap="submit" loading="{{loading}}">保存修改</button>
+</view>

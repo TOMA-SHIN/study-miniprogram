@@ -1,0 +1,31 @@
+<view class="container">
+  <view class="form-card">
+    <view class="form-item">
+      <text class="label">待办内容</text>
+      <input class="input" placeholder="请输入待办事项" value="{{title}}" bindinput="onTitleInput" />
+    </view>
+
+    <view class="form-item">
+      <text class="label">分类</text>
+      <picker mode="selector" range="{{categories}}" value="{{categoryIndex}}" bindchange="onCategoryChange">
+        <view class="picker">{{categories[categoryIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="label">优先级</text>
+      <picker mode="selector" range="{{priorities}}" value="{{priorityIndex}}" bindchange="onPriorityChange">
+        <view class="picker">{{priorities[priorityIndex] === 'high' ? '高' : priorities[priorityIndex] === 'medium' ? '中' : '低'}}</view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="label">截止日期</text>
+      <picker mode="date" value="{{dueDate}}" bindchange="onDateChange">
+        <view class="picker">{{dueDate}}</view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="btn-primary submit-btn" bindtap="submitTodo">确认添加</view>
+</view>

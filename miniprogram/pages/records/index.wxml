@@ -1,0 +1,91 @@
+<view class="container {{isDarkMode ? 'dark-mode' : ''}}">
+  <!-- Stats Summary -->
+  <view class="stats-card">
+    <view class="stats-item">
+      <text class="stats-num">{{totalRecords}}</text>
+      <text class="stats-label">记录数</text>
+    </view>
+    <view class="stats-item">
+      <text class="stats-num">{{totalMinutes}}</text>
+      <text class="stats-label">总时长(分)</text>
+    </view>
+    <view class="stats-item">
+      <text class="stats-num">{{avgMinutes}}</text>
+      <text class="stats-label">平均(分)</text>
+    </view>
+  </view>
+
+  <!-- Filter Bar -->
+  <view class="filter-bar">
+    <view class="filter-row">
+      <picker mode="date" value="{{date}}" bindchange="onDateChange">
+        <view class="filter-picker {{date ? 'active' : ''}}">
+          {{date || '日期'}}
+        </view>
+      </picker>
+      <picker mode="selector" range="{{subjects}}" range-key="name" value="{{subjectIndex}}" bindchange="onSubjectChange">
+        <view class="filter-picker {{subjectIndex > -1 ? 'active' : ''}}">
+          {{subjectIndex > -1 ? subjects[subjectIndex].name : '科目'}}
+        </view>
+      </picker>
+      <picker mode="selector" range="{{plans}}" range-key="name" value="{{planIndex}}" bindchange="onPlanChange">
+        <view class="filter-picker {{planIndex > -1 ? 'active' : ''}}">
+          {{planIndex > -1 ? plans[planIndex].name : '计划'}}
+        </view>
+      </picker>
+    </view>
+    <view class="filter-row">
+      <input class="filter-input" placeholder="搜索笔记内容..." value="{{keyword}}" bindinput="onKeywordInput" />
+      <view class="filter-btn primary" bindtap="applyFilter">筛选</view>
+      <view class="filter-btn" bindtap="clearFilter">清空</view>
+    </view>
+  </view>
+
+  <view class="record-list">
+    <view class="record-card" wx:for="{{records}}" wx:key="_id">
+      <view class="card-content">
+        <view class="card-header">
+          <view class="record-dot" style="background-color: {{item.planColor}};"></view>
+          <text class="plan-name">{{item.planName}}</text>
+          <view class="subject-tag">{{item.subject}}</view>
+        </view>
+        <view class="card-body">
+          <view class="info-row">
+            <text class="label">日期：</text>
+            <text>{{item.date}}</text>
+          </view>
+          <view class="info-row">
+            <text class="label">时长：</text>
+            <text class="minutes-text">{{item.minutes}} 分钟</text>
+          </view>
+          <view class="info-row">
+            <text class="label">剩余：</text>
+            <text class="remain-text">{{item.remainingMinutes}} 分钟</text>
+          </view>
+          <view class="note-row" wx:if="{{item.note}}">
+            <text class="note-text">{{item.note}}</text>
+          </view>
+          <view class="image-row" wx:if="{{item.imageUrl}}">
+            <image class="record-thumb" src="{{item.imageUrl}}" mode="aspectFill" data-url="{{item.imageUrl}}" bindtap="previewImage" />
+          </view>
+        </view>
+      </view>
+      <view class="card-footer">
+        <text class="edit-btn" bindtap="goEdit" data-record="{{item}}">编辑</text>
+        <text class="delete-btn" bindtap="deleteRecord" data-id="{{item._id}}">删除</text>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading-state">
+    <text>加载中...</text>
+  </view>
+
+  <view wx:if="{{!hasMore && records.length > 0}}" class="no-more-state">
+    <text>没有更多了</text>
+  </view>
+
+  <view wx:if="{{records.length === 0 && !loading}}" class="empty-state">
+    <text>暂无记录</text>
+  </view>
+</view>
