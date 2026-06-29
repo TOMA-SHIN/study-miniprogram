@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/checkin/checkin",
+    "pages/plans/index",
+    "pages/planForm/planForm",
+    "pages/calendar/calendar",
+    "pages/stats/stats",
+    "pages/add/index",
+    "pages/records/index",
+    "pages/recordEdit/index",
+    "pages/profile/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4CAF50",
+    "navigationBarTitleText": "学习打卡",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#4CAF50",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "首页" },
+      { "pagePath": "pages/checkin/checkin", "text": "打卡" },
+      { "pagePath": "pages/plans/index", "text": "计划" },
+      { "pagePath": "pages/records/index", "text": "记录" },
+      { "pagePath": "pages/profile/index", "text": "我的" }
+    ]
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}
